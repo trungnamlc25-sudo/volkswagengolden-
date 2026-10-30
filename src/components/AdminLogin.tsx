@@ -58,7 +58,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess, onBackTo
             </svg>
           </div>
           <span className="text-[11px] font-black tracking-widest text-vw-cyan uppercase block">
-            VOLKSWAGEN GOLDEN
+            Volkswagen Thế Kiệt
           </span>
           <h2 className="text-2xl font-black text-vw-blue tracking-tight">
             Đăng Nhập Quản Trị

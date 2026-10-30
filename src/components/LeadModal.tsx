@@ -130,7 +130,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                 Đăng Ký Thông Tin Thành Công!
               </h3>
               <p className="text-sm text-slate-600 max-w-md mx-auto">
-                Cảm ơn <strong>{fullName}</strong> đã quan tâm. Chuyên viên tư vấn của <strong>Volkswagen Golden</strong> sẽ liên hệ với bạn trong thời gian sớm nhất.
+                Cảm ơn <strong>{fullName}</strong> đã quan tâm. Chuyên viên tư vấn của <strong>Volkswagen Thế Kiệt</strong> sẽ liên hệ với bạn trong thời gian sớm nhất.
               </p>
             </div>
 
@@ -166,13 +166,13 @@ export const LeadModal: React.FC<LeadModalProps> = ({
               
               <div>
                 <span className="text-[11px] font-black tracking-widest text-vw-cyan uppercase">
-                  VOLKSWAGEN GOLDEN
+                  Volkswagen Thế Kiệt
                 </span>
                 <h2 className="text-2xl font-black text-vw-blue tracking-tight">
                   NHẬN BÁO GIÁ & ƯU ĐÃI
                 </h2>
                 <p className="text-xs text-slate-500 mt-1">
-                  Quý khách vui lòng để lại thông tin, Volkswagen Golden sẽ gửi bảng giá lăn bánh và ưu đãi mới nhất!
+                  Quý khách vui lòng để lại thông tin, Volkswagen Thế Kiệt sẽ gửi bảng giá lăn bánh và ưu đãi mới nhất!
                 </p>
               </div>
 
@@ -307,7 +307,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
             <div className="hidden md:block md:col-span-5 relative bg-slate-900">
               <img
                 src="https://volkswagengolden.vn/wp-content/uploads/2026/05/05_DSCF9306-1024x742.jpg"
-                alt="Volkswagen Golden"
+                alt="Volkswagen Thế Kiệt"
                 className="w-full h-full object-cover opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent flex flex-col justify-end p-6 text-white space-y-2">

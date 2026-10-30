@@ -121,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenLeadModal, settings }) => 
                     <path d="M 28,26 L 44,74 L 50,56 L 56,74 L 72,26 L 62,26 L 53,53 L 50,44 L 53,35 L 61,35 L 63,26 L 37,26 L 39,35 L 47,35 L 50,44 L 47,53 L 38,26 Z" />
                   </svg>
                 </div>
-                <span className="font-extrabold text-sm text-vw-blue tracking-tight">VW GOLDEN</span>
+                <span className="font-extrabold text-sm text-vw-blue tracking-tight">Volkswagen Thế Kiệt</span>
               </a>
             </div>
 
@@ -234,7 +234,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenLeadModal, settings }) => 
                     <path d="M 28,26 L 44,74 L 50,56 L 56,74 L 72,26 L 62,26 L 53,53 L 50,44 L 53,35 L 61,35 L 63,26 L 37,26 L 39,35 L 47,35 L 50,44 L 47,53 L 38,26 Z" />
                   </svg>
                 </div>
-                <span className="font-extrabold text-sm text-vw-blue">VOLKSWAGEN GOLDEN</span>
+                <span className="font-extrabold text-sm text-vw-blue">Volkswagen Thế Kiệt</span>
               </div>
               <button 
                 onClick={() => setMobileMenuOpen(false)}

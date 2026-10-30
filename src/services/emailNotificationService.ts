@@ -45,7 +45,7 @@ export const sendLeadNotificationEmail = async (
           'Nhu cầu': lead.need,
           'Ghi chú': lead.note || 'Không có ghi chú thêm',
           'Thời gian đăng ký': lead.createdAt || new Date().toLocaleString('vi-VN'),
-          'Nguồn': 'Website Volkswagen Golden (Form Đăng Ký Trực Tuyến)'
+          'Nguồn': 'Website Volkswagen Thế Kiệt (Form Đăng Ký Trực Tuyến)'
         })
       });
 
@@ -81,7 +81,7 @@ export const sendLeadNotificationEmail = async (
     'NHU CẦU TƯ VẤN': lead.need,
     'GHI CHÚ KHÁCH HÀNG': lead.note || 'Không có ghi chú thêm',
     'THỜI GIAN ĐĂNG KÝ': lead.createdAt || new Date().toLocaleString('vi-VN'),
-    'NGUỒN': 'Website Volkswagen Golden Urban Store (Form Đăng Ký)'
+    'NGUỒN': 'Website Volkswagen Thế Kiệt (Form Đăng Ký)'
   };
 
   try {
@@ -125,7 +125,7 @@ export const sendLeadNotificationEmail = async (
  */
 export const sendTestNotificationEmail = async (
   recipientEmail: string,
-  showroomName: string = 'Volkswagen Golden',
+  showroomName: string = 'Volkswagen Thế Kiệt',
   web3FormsKey?: string
 ): Promise<EmailSendResult> => {
   if (!recipientEmail || !recipientEmail.trim() || !recipientEmail.includes('@')) {

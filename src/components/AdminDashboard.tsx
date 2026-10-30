@@ -396,7 +396,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   };
 
   const handleResetCMS = () => {
-    if (window.confirm('Khôi phục toàn bộ nội dung trang chủ về mặc định chuẩn Volkswagen Golden?')) {
+    if (window.confirm('Khôi phục toàn bộ nội dung trang chủ về mặc định chuẩn Volkswagen Thế Kiệt?')) {
       setTempSiteContent(DEFAULT_SITE_CONTENT);
       onUpdateSiteContent(DEFAULT_SITE_CONTENT);
       localStorage.removeItem('vw_golden_site_content');
@@ -677,7 +677,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-black text-sm tracking-wide uppercase">VOLKSWAGEN GOLDEN</span>
+                <span className="font-black text-sm tracking-wide uppercase">Volkswagen Thế Kiệt</span>
                 <span className="px-2 py-0.5 rounded bg-vw-cyan text-vw-dark text-[10px] font-black uppercase">
                   Admin CMS & CRM
                 </span>

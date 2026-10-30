@@ -75,7 +75,7 @@ export const ShowroomIntro: React.FC<ShowroomIntroProps> = ({
             <div className="relative group overflow-hidden rounded-2xl shadow-xl border border-slate-200">
               <img
                 src={content.image}
-                alt="Volkswagen Golden Urban Store"
+                alt="Volkswagen Thế Kiệt"
                 className="w-full h-[380px] sm:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 loading="lazy"
               />

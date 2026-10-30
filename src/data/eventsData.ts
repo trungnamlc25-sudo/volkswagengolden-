@@ -4,7 +4,7 @@ export const EVENTS_DATA: EventItem[] = [
   // Showroom
   {
     id: 'sr-1',
-    title: 'Showroom Volkswagen Golden - Không gian sang trọng tại Golden Plaza',
+    title: 'Showroom Volkswagen Thế Kiệt - Không gian sang trọng chuẩn Châu Âu',
     category: 'showroom',
     image: 'https://volkswagengolden.vn/wp-content/uploads/2026/06/NTT05987-1024x683.jpg'
   },
@@ -66,7 +66,7 @@ export const EVENTS_DATA: EventItem[] = [
   },
   {
     id: 'kh-5',
-    title: 'Sự kiện lái thử xe Driving Experience tại Volkswagen Golden',
+    title: 'Sự kiện lái thử xe Driving Experience tại Volkswagen Thế Kiệt',
     category: 'customer',
     image: 'https://volkswagengolden.vn/wp-content/uploads/2026/06/549560611_122136931124890035_4693860657767008662_n-1024x682.jpg'
   },
@@ -119,9 +119,9 @@ export const EVENTS_DATA: EventItem[] = [
 export const NEWS_DATA: NewsItem[] = [
   {
     id: 'news-1',
-    title: 'Volkswagen Golden – Không gian Urban Store chuẩn Châu Âu giữa lòng Sài Gòn',
+    title: 'Volkswagen Thế Kiệt – Không gian trải nghiệm chuẩn Châu Âu',
     date: 'Tháng 6, 2026',
-    excerpt: 'Volkswagen Golden mang đến không gian Urban Store hiện đại, nơi khách hàng trải nghiệm trọn vẹn các dòng xe Volkswagen chính hãng cùng dịch vụ tiêu chuẩn 4S.',
+    excerpt: 'Volkswagen Thế Kiệt mang đến không gian trải nghiệm hiện đại, nơi khách hàng trải nghiệm trọn vẹn các dòng xe Volkswagen chính hãng cùng dịch vụ tiêu chuẩn 4S.',
     image: 'https://volkswagengolden.vn/wp-content/uploads/2026/06/NTT05987-1024x683.jpg',
     category: 'Tin Showroom',
     readTime: '3 phút đọc'

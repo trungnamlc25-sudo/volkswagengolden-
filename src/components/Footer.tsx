@@ -170,7 +170,7 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <div className="rounded-2xl overflow-hidden border border-slate-800 h-[210px] w-full shadow-inner bg-slate-900">
               <iframe
-                title="Volkswagen Golden Google Maps"
+                title="Volkswagen Thế Kiệt Google Maps"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.759815222098!2d106.65477020000002!3d10.7529853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ef47d74c789%3A0x2777b0640bc48279!2sGolden%20Plaza!5e0!3m2!1svi!2s!4v1785901257927!5m2!1svi!2s"
                 width="100%"
                 height="100%"
@@ -211,7 +211,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Copyright */}
         <div className="mt-6 pt-6 border-t border-slate-900 text-center text-slate-400 text-[11px]">
-          <p>© {new Date().getFullYear()} Volkswagen Golden. Tất cả các quyền được bảo lưu. Thiết kế và vận hành theo tiêu chuẩn Volkswagen Châu Âu.</p>
+          <p>© {new Date().getFullYear()} Volkswagen Thế Kiệt. Tất cả các quyền được bảo lưu. Thiết kế và vận hành theo tiêu chuẩn Volkswagen Châu Âu.</p>
         </div>
 
       </div>

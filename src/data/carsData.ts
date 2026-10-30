@@ -385,7 +385,7 @@ export const CARS_DATA: CarModel[] = [
 ];
 
 export const SHOWROOM_INFO = {
-  name: 'Volkswagen Golden Urban Store',
+  name: 'Volkswagen Thế Kiệt',
   company: 'CÔNG TY TNHH Ô TÔ VW SÀI GÒN',
   address: 'Số 922 Nguyễn Trãi, Phường Chợ Lớn, Thành Phố Hồ Chí Minh, Việt Nam',
   hotline: '0941 866 779',
@@ -439,9 +439,9 @@ export const DEFAULT_SITE_CONTENT = {
     buttonText: 'NHẬN ƯU ĐÃI'
   },
   showroomIntro: {
-    badge: 'URBAN STORE TIÊU CHUẨN ĐỨC',
-    title: 'Volkswagen Golden Urban Store – Tinh hoa Đức trong không gian hiện đại và khác biệt',
-    description: 'Tọa lạc tại vị trí đắc địa tầng trệt Golden Plaza (922 Nguyễn Trãi, Chợ Lớn), Volkswagen Golden là mô hình Urban Store phong cách sống hiện đại, nơi khách hàng không chỉ chiêm ngưỡng những mẫu xe Đức trứ danh mà còn tận hưởng không gian trải nghiệm sang trọng và riêng tư.',
+    badge: 'SHOWROOM TIÊU CHUẨN ĐỨC',
+    title: 'Volkswagen Thế Kiệt – Tinh hoa Đức trong không gian hiện đại và khác biệt',
+    description: 'Volkswagen Thế Kiệt là không gian trải nghiệm phong cách sống hiện đại, nơi khách hàng không chỉ chiêm ngưỡng những mẫu xe Đức trứ danh mà còn tận hưởng không gian tiếp đón sang trọng và riêng tư.',
     image: 'https://volkswagengolden.vn/wp-content/uploads/2026/06/z7899233077807_907095f633765124737c122bcedd9135.jpg',
     features: [
       {
@@ -470,7 +470,7 @@ export const DEFAULT_SITE_CONTENT = {
   gallerySection: {
     badge: 'KHOẢNH KHẮC & SỰ KIỆN',
     title: 'Hình Ảnh Bàn Giao & Trải Nghiệm Khách Hàng',
-    subtitle: 'Những khoảnh khắc trao chìa khóa trọn niềm vui và sự tin tưởng của các khách hàng đẳng cấp khi đồng hành cùng Volkswagen Golden.',
+    subtitle: 'Những khoảnh khắc trao chìa khóa trọn niềm vui và sự tin tưởng của các khách hàng đẳng cấp khi đồng hành cùng Volkswagen Thế Kiệt.',
     items: EVENTS_DATA
   },
   newsSection: {
@@ -480,9 +480,9 @@ export const DEFAULT_SITE_CONTENT = {
     newsItems: [
       {
         id: 'news-1',
-        title: 'Volkswagen Golden – Không gian Urban Store chuẩn Châu Âu giữa lòng Sài Gòn',
+        title: 'Volkswagen Thế Kiệt – Không gian trải nghiệm chuẩn Châu Âu',
         date: 'Tháng 6, 2026',
-        excerpt: 'Volkswagen Golden mang đến không gian Urban Store hiện đại, nơi khách hàng trải nghiệm trọn vẹn các dòng xe Volkswagen chính hãng cùng dịch vụ tiêu chuẩn 4S.',
+        excerpt: 'Volkswagen Thế Kiệt mang đến không gian trải nghiệm hiện đại, nơi khách hàng trải nghiệm trọn vẹn các dòng xe Volkswagen chính hãng cùng dịch vụ tiêu chuẩn 4S.',
         image: 'https://volkswagengolden.vn/wp-content/uploads/2026/06/NTT05987-1024x683.jpg',
         category: 'Tin Showroom',
         readTime: '3 phút đọc'
