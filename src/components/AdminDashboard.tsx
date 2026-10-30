@@ -597,7 +597,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       hotlineFormatted: tempSettings.hotlineFormatted || tempSettings.hotline,
       messenger: tempSettings.messenger || 'http://m.me/649644434900717',
       notificationEmail: (tempSettings.notificationEmail || tempSettings.email || '').trim(),
-      notificationEnabled: tempSettings.notificationEnabled !== false
+      notificationEnabled: tempSettings.notificationEnabled !== false,
+      web3FormsAccessKey: (tempSettings.web3FormsAccessKey || '').trim()
     };
     onUpdateSettings(updatedSettings);
     localStorage.setItem('vw_golden_showroom_settings', JSON.stringify(updatedSettings));
@@ -614,7 +615,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     setIsSendingTestEmail(true);
     setTestEmailMsg(null);
     try {
-      const res = await sendTestNotificationEmail(targetEmail, tempSettings.name);
+      const res = await sendTestNotificationEmail(targetEmail, tempSettings.name, tempSettings.web3FormsAccessKey);
       setTestEmailMsg({
         success: res.success,
         text: res.message
@@ -625,7 +626,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         const autoSavedSettings: ShowroomSettings = {
           ...tempSettings,
           notificationEmail: targetEmail,
-          notificationEnabled: true
+          notificationEnabled: true,
+          web3FormsAccessKey: (tempSettings.web3FormsAccessKey || '').trim()
         };
         setTempSettings(autoSavedSettings);
         onUpdateSettings(autoSavedSettings);
@@ -2880,7 +2882,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   </label>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <div>
                     <label className="block font-bold text-slate-800 mb-1">
                       Email Cá Nhân Nhận Thông Báo (Gmail, Outlook, Yahoo...) *
@@ -2908,6 +2910,33 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     </div>
                   </div>
 
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block font-bold text-slate-800">
+                        Web3Forms Access Key <span className="text-emerald-600 text-[11px] font-semibold">(Khuyên dùng - Miễn phí & Cực kỳ ổn định)</span>
+                      </label>
+                      <a 
+                        href="https://web3forms.com" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="text-[11px] text-blue-600 hover:underline flex items-center gap-1 font-semibold"
+                      >
+                        <span>👉 Lấy Key miễn phí tại web3forms.com</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                    <input
+                      type="text"
+                      value={tempSettings.web3FormsAccessKey || ''}
+                      onChange={(e) => setTempSettings({ ...tempSettings, web3FormsAccessKey: e.target.value })}
+                      placeholder="Dán mã Access Key vào đây (ví dụ: a1b2c3d4-e5f6-7890-abcd-ef1234567890)"
+                      className="w-full px-3 py-2.5 bg-white border border-slate-300 rounded-xl font-mono text-slate-800 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                    />
+                    <p className="text-[11px] text-slate-500 mt-1">
+                      💡 <strong>Cách lấy key trong 10 giây:</strong> Vào <a href="https://web3forms.com" target="_blank" rel="noreferrer" className="text-blue-600 font-bold hover:underline">web3forms.com</a>, nhập email của bạn và bấm <em>"Create Access Key"</em>. Mở Gmail copy mã dán vào ô trên là xong.
+                    </p>
+                  </div>
+
                   {testEmailMsg && (
                     <div className={`p-3 rounded-xl text-xs font-semibold border ${
                       testEmailMsg.success
@@ -2920,11 +2949,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                   <div className="bg-white/90 p-3.5 rounded-xl border border-emerald-100 text-[11px] text-slate-600 space-y-1.5">
                     <p className="font-bold text-emerald-950 flex items-center gap-1.5">
-                      <span>💡 Hướng dẫn & Lưu ý quan trọng:</span>
+                      <span>💡 Cơ chế hoạt động gửi Email:</span>
                     </p>
                     <ul className="list-disc list-inside space-y-1 text-slate-600">
                       <li>Bất cứ khi nào khách bấm <strong>"Gửi Đăng Ký"</strong> hoặc <strong>"Nhận Báo Giá"</strong> ngoài website, hệ thống sẽ tự động gửi email thông báo ngay lập tức.</li>
-                      <li><strong>Lần đầu tiên sử dụng:</strong> Vui lòng mở hộp thư đến (hoặc thư mục <em>Spam / Thư rác</em>) của email bạn vừa nhập, bạn sẽ nhận được 1 email yêu cầu xác nhận <strong>"Activate Form"</strong> (chỉ bấm 1 lần duy nhất để chống spam). Sau khi xác nhận, mọi khách hàng đăng ký sẽ gửi thẳng về Inbox của bạn!</li>
+                      <li><strong>Nếu có Web3Forms Access Key:</strong> Email được gửi qua cổng Web3Forms API chính thức, tốc độ cực nhanh, không lo bị chặn bởi AdBlock hay lỗi máy chủ.</li>
+                      <li><strong>Nếu không điền Access Key:</strong> Hệ thống sẽ tự động gửi qua FormSubmit.</li>
                     </ul>
                   </div>
                 </div>

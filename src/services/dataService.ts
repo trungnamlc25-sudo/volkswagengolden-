@@ -84,14 +84,20 @@ export const saveNewLead = async (lead: Lead, currentSettings?: ShowroomSettings
   try {
     let recipient = (currentSettings?.notificationEmail || '').trim();
     let isEnabled = currentSettings?.notificationEnabled !== false;
+    let accessKey = (currentSettings?.web3FormsAccessKey || '').trim();
 
     // Fallback 1: LocalStorage settings
-    if (!recipient) {
+    if (!recipient || !accessKey) {
       const rawSettings = localStorage.getItem('vw_golden_showroom_settings');
       if (rawSettings) {
         try {
           const parsed = JSON.parse(rawSettings);
-          recipient = (parsed.notificationEmail || parsed.email || '').trim();
+          if (!recipient) {
+            recipient = (parsed.notificationEmail || parsed.email || '').trim();
+          }
+          if (!accessKey) {
+            accessKey = (parsed.web3FormsAccessKey || '').trim();
+          }
           if (parsed.notificationEnabled !== undefined) {
             isEnabled = parsed.notificationEnabled;
           }
@@ -100,12 +106,17 @@ export const saveNewLead = async (lead: Lead, currentSettings?: ShowroomSettings
     }
 
     // Fallback 2: Server API settings (/api/settings)
-    if (!recipient) {
+    if (!recipient || !accessKey) {
       try {
         const res = await fetch('/api/settings');
         if (res.ok) {
           const serverSettings = await res.json();
-          recipient = (serverSettings?.notificationEmail || serverSettings?.email || '').trim();
+          if (!recipient) {
+            recipient = (serverSettings?.notificationEmail || serverSettings?.email || '').trim();
+          }
+          if (!accessKey) {
+            accessKey = (serverSettings?.web3FormsAccessKey || '').trim();
+          }
           if (serverSettings?.notificationEnabled !== undefined) {
             isEnabled = serverSettings.notificationEnabled;
           }
@@ -120,7 +131,7 @@ export const saveNewLead = async (lead: Lead, currentSettings?: ShowroomSettings
 
     if (isEnabled && recipient && recipient.includes('@')) {
       console.log(`[Email Notification] Đang gửi thông báo lead tới email: ${recipient}`);
-      const result = await sendLeadNotificationEmail(lead, recipient);
+      const result = await sendLeadNotificationEmail(lead, recipient, accessKey);
       console.log('[Email Notification] Kết quả:', result);
     } else {
       console.warn('[Email Notification] Bỏ qua gửi email - chưa cấu hình email hoặc tính năng đang tắt:', {

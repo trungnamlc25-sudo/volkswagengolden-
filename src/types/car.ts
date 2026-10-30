@@ -61,6 +61,7 @@ export interface ShowroomSettings {
   tiktok?: string;
   notificationEmail?: string;
   notificationEnabled?: boolean;
+  web3FormsAccessKey?: string;
 }
 
 export interface HeroSlideContent {
