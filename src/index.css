@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --vw-blue: #001e50;
+    --vw-blue-dark: #001333;
+    --vw-blue-light: #00437a;
+    --vw-cyan: #00b1eb;
+    --vw-red: #d5001c;
+    --vw-dark: #08111f;
+    --vw-ink: #132033;
+    --vw-muted: #64748b;
+    --vw-line: #d9e2ec;
+    --vw-bg: #f4f7fb;
+    --vw-white: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fb;
+    color: #132033;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #001e50;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(213, 0, 28, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(213, 0, 28, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(213, 0, 28, 0);
+  }
+}
+
+.hotline-pulse {
+  animation: pulse-ring 2s infinite;
+}
