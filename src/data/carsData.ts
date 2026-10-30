@@ -388,18 +388,18 @@ export const SHOWROOM_INFO = {
   name: 'Volkswagen Thế Kiệt',
   company: 'CÔNG TY TNHH Ô TÔ VW SÀI GÒN',
   address: 'Số 922 Nguyễn Trãi, Phường Chợ Lớn, Thành Phố Hồ Chí Minh, Việt Nam',
-  hotline: '0941 866 779',
-  hotlineFormatted: '0941.866.779',
+  hotline: '0963 824 870',
+  hotlineFormatted: '0963.824.870',
   email: 'info@vwsaigon.vn',
   website: 'https://volkswagengolden.vn',
-  zalo: 'https://zalo.me/0789475066',
-  zaloPhone: '0789 475 066',
+  zalo: 'https://zalo.me/0963824870',
+  zaloPhone: '0963 824 870',
   messenger: 'http://m.me/649644434900717',
   facebook: 'https://www.facebook.com/vw.golden/',
   tiktok: 'https://www.tiktok.com/@vw.golden.ofc',
   youtube: 'https://www.youtube.com/@VolkswagenGolden',
   openHours: 'Thứ 2 - Chủ Nhật: 08:00 - 18:00',
-  notificationEmail: 'info@vwsaigon.vn',
+  notificationEmail: 'trungnamlc25@gmail.com',
   notificationEnabled: true
 };
 

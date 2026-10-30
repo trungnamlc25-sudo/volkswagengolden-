@@ -100,6 +100,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Settings State Form
   const [tempSettings, setTempSettings] = useState<ShowroomSettings>(settings);
   const [settingsSavedMsg, setSettingsSavedMsg] = useState(false);
+  const [isSavingSettings, setIsSavingSettings] = useState(false);
+  const [saveStatusInfo, setSaveStatusInfo] = useState<{ type: 'success' | 'warn' | 'error'; text: string } | null>(null);
   const [isSendingTestEmail, setIsSendingTestEmail] = useState(false);
   const [testEmailMsg, setTestEmailMsg] = useState<{ success: boolean; text: string } | null>(null);
 
@@ -589,21 +591,40 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   };
 
   // Settings save handler (Đồng bộ Messenger, Hotline, Zalo, Showroom info, Email Notification)
-  const handleSaveSettings = (e: React.FormEvent) => {
+  const handleSaveSettings = async (e: React.FormEvent) => {
     e.preventDefault();
-    const updatedSettings: ShowroomSettings = {
-      ...tempSettings,
-      zalo: `https://zalo.me/${tempSettings.zaloPhone.replace(/\s+/g, '')}`,
-      hotlineFormatted: tempSettings.hotlineFormatted || tempSettings.hotline,
-      messenger: tempSettings.messenger || 'http://m.me/649644434900717',
-      notificationEmail: (tempSettings.notificationEmail || tempSettings.email || '').trim(),
-      notificationEnabled: tempSettings.notificationEnabled !== false,
-      web3FormsAccessKey: (tempSettings.web3FormsAccessKey || '').trim()
-    };
-    onUpdateSettings(updatedSettings);
-    localStorage.setItem('vw_golden_showroom_settings', JSON.stringify(updatedSettings));
-    setSettingsSavedMsg(true);
-    setTimeout(() => setSettingsSavedMsg(false), 3000);
+    setIsSavingSettings(true);
+    setSaveStatusInfo(null);
+    try {
+      const updatedSettings: ShowroomSettings = {
+        ...tempSettings,
+        zalo: `https://zalo.me/${tempSettings.zaloPhone.replace(/\s+/g, '')}`,
+        hotlineFormatted: tempSettings.hotlineFormatted || tempSettings.hotline,
+        messenger: tempSettings.messenger || 'http://m.me/649644434900717',
+        notificationEmail: (tempSettings.notificationEmail || tempSettings.email || '').trim(),
+        notificationEnabled: tempSettings.notificationEnabled !== false,
+        web3FormsAccessKey: (tempSettings.web3FormsAccessKey || '').trim()
+      };
+      onUpdateSettings(updatedSettings);
+      localStorage.setItem('vw_golden_showroom_settings', JSON.stringify(updatedSettings));
+      
+      const dbResult = await saveShowroomSettingsToDb(updatedSettings);
+      setSaveStatusInfo({
+        type: dbResult.syncedToCloud ? 'success' : 'warn',
+        text: dbResult.message
+      });
+      setSettingsSavedMsg(true);
+      setTimeout(() => {
+        setSettingsSavedMsg(false);
+      }, 6000);
+    } catch (err: any) {
+      setSaveStatusInfo({
+        type: 'error',
+        text: `Lỗi khi lưu: ${err.message || 'Không thể lưu cài đặt'}`
+      });
+    } finally {
+      setIsSavingSettings(false);
+    }
   };
 
   const handleTestEmail = async () => {
@@ -2960,13 +2981,35 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex justify-end">
+              {saveStatusInfo && (
+                <div className={`p-4 rounded-xl text-xs font-bold border flex items-start gap-2.5 animate-in fade-in duration-200 ${
+                  saveStatusInfo.type === 'success'
+                    ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
+                    : saveStatusInfo.type === 'warn'
+                    ? 'bg-amber-50 border-amber-300 text-amber-900'
+                    : 'bg-red-50 border-red-300 text-red-800'
+                }`}>
+                  <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${
+                    saveStatusInfo.type === 'success' ? 'text-emerald-600' : saveStatusInfo.type === 'warn' ? 'text-amber-600' : 'text-red-600'
+                  }`} />
+                  <div>
+                    <p className="font-bold">{saveStatusInfo.text}</p>
+                  </div>
+                </div>
+              )}
+
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+                <span className="text-[11px] text-slate-500 hidden sm:inline">
+                  * Mọi thay đổi về hotline, email, Zalo sẽ được cập nhật toàn bộ trang.
+                </span>
+
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-vw-blue hover:bg-vw-blue-light text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow flex items-center gap-2"
+                  disabled={isSavingSettings}
+                  className="px-6 py-3 bg-vw-blue hover:bg-vw-blue-light disabled:opacity-50 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow flex items-center gap-2 cursor-pointer transition-all"
                 >
-                  <Save className="w-4 h-4" />
-                  <span>Lưu Toàn Bộ Cài Đặt Liên Hệ & Email</span>
+                  <Save className={`w-4 h-4 ${isSavingSettings ? 'animate-spin' : ''}`} />
+                  <span>{isSavingSettings ? 'Đang Lưu Cài Đặt...' : 'Lưu Toàn Bộ Cài Đặt Liên Hệ & Email'}</span>
                 </button>
               </div>
 

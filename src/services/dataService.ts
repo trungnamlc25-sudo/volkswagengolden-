@@ -356,7 +356,9 @@ export const fetchShowroomSettings = async (): Promise<ShowroomSettings> => {
   return SHOWROOM_INFO;
 };
 
-export const saveShowroomSettingsToDb = async (settings: ShowroomSettings): Promise<void> => {
+export const saveShowroomSettingsToDb = async (
+  settings: ShowroomSettings
+): Promise<{ success: boolean; syncedToCloud: boolean; message: string }> => {
   // 1. LocalStorage
   localStorage.setItem('vw_golden_showroom_settings', JSON.stringify(settings));
 
@@ -375,7 +377,7 @@ export const saveShowroomSettingsToDb = async (settings: ShowroomSettings): Prom
   const supabase = getSupabase();
   if (supabase) {
     try {
-      await supabase.from('showroom_settings').upsert({
+      const payload: any = {
         id: 'current',
         name: settings.name,
         company: settings.company,
@@ -392,12 +394,38 @@ export const saveShowroomSettingsToDb = async (settings: ShowroomSettings): Prom
         tiktok: settings.tiktok || null,
         notification_email: settings.notificationEmail || null,
         notification_enabled: settings.notificationEnabled !== false,
+        web3_forms_access_key: settings.web3FormsAccessKey || null,
         updated_at: new Date().toISOString()
-      });
-    } catch (err) {
+      };
+
+      const { error } = await supabase.from('showroom_settings').upsert(payload);
+      if (error) {
+        // If web3_forms_access_key column doesn't exist, retry without it
+        delete payload.web3_forms_access_key;
+        const retry = await supabase.from('showroom_settings').upsert(payload);
+        if (retry.error) throw retry.error;
+      }
+
+      return {
+        success: true,
+        syncedToCloud: true,
+        message: 'Đã lưu cài đặt và đồng bộ lên Database Cloud Supabase! Mọi thiết bị sẽ nhận thông tin mới ngay lập tức.'
+      };
+    } catch (err: any) {
       console.warn('Supabase saveShowroomSettings error:', err);
+      return {
+        success: true,
+        syncedToCloud: false,
+        message: `Đã lưu trên máy này. Chưa đồng bộ lên Supabase: ${err.message || 'Lỗi kết nối'}`
+      };
     }
   }
+
+  return {
+    success: true,
+    syncedToCloud: false,
+    message: 'Đã lưu cài đặt thành công vào bộ nhớ máy này! (Chưa kết nối Supabase Cloud nên thiết bị khác chưa tự cập nhật được).'
+  };
 };
 
 // -------------------------------------------------------------
