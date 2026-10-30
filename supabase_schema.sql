@@ -34,8 +34,16 @@ CREATE TABLE IF NOT EXISTS public.showroom_settings (
     facebook TEXT,
     youtube TEXT,
     tiktok TEXT,
+    notification_email TEXT,
+    notification_enabled BOOLEAN DEFAULT true,
+    web3_forms_access_key TEXT,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
+
+-- Tự động bổ sung các cột mới nếu bảng đã tạo từ trước
+ALTER TABLE public.showroom_settings ADD COLUMN IF NOT EXISTS notification_email TEXT;
+ALTER TABLE public.showroom_settings ADD COLUMN IF NOT EXISTS notification_enabled BOOLEAN DEFAULT true;
+ALTER TABLE public.showroom_settings ADD COLUMN IF NOT EXISTS web3_forms_access_key TEXT;
 
 -- 3. BẢNG NỘI DUNG GIAO DIỆN TRANG CHỦ (CMS SITE CONTENT)
 CREATE TABLE IF NOT EXISTS public.site_content (

@@ -398,13 +398,16 @@ export const saveShowroomSettingsToDb = async (
         updated_at: new Date().toISOString()
       };
 
-      const { error } = await supabase.from('showroom_settings').upsert(payload);
-      if (error) {
-        // If web3_forms_access_key column doesn't exist, retry without it
+      let { error } = await supabase.from('showroom_settings').upsert(payload);
+      if (error && error.message && error.message.includes('Could not find')) {
+        // Nếu schema Supabase cũ chưa có các cột mới, tự động bỏ các trường này để lưu hotline & thông tin cơ bản
         delete payload.web3_forms_access_key;
+        delete payload.notification_email;
+        delete payload.notification_enabled;
         const retry = await supabase.from('showroom_settings').upsert(payload);
-        if (retry.error) throw retry.error;
+        error = retry.error;
       }
+      if (error) throw error;
 
       return {
         success: true,
